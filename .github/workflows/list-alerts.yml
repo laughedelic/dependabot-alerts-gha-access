@@ -1,0 +1,17 @@
+name: Dependabot alerts
+
+on:
+  workflow_dispatch:
+  push:
+  
+permissions: write-all
+
+jobs:
+  list-alerts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api '/repos/{owner}/{repo}/dependabot/alerts'
